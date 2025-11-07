@@ -1,0 +1,97 @@
+/* Vamos a establecer los colores */
+:root {
+    --primary-orange: #F98125;
+    --dark-background: #121212;
+    --text-white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-background);
+    color: var(--text-white);
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para la barra de navegación */
+header {
+    /*Hacemos que la barra se quede fija en la parte superior*/
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    padding: 20px 5%; /*Espaciado interno*/
+    justify-content: center;
+    position: relative;
+    z-index: 1000; /*Que siempre este encima de otros elementos*/
+ }
+
+.navbar-apple {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre los elementos de la lista */
+    background-color: #1e1e1e; /* Un gris oscuro para que resalte un poco */
+    padding: 12px 30px; /* Espaciado interno para darle forma */
+    border-radius: 50px; /* ¡Esto crea la forma de píldora! */
+    border: 1px solid #333;
+    /* Efecto opcional de "cristal esmerilado" muy moderno */
+    background-color: rgba(30, 30, 30, 0.75);
+    backdrop-filter: blur(10px);
+}
+
+/*Estilo de la lista de enlaces*/
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 35px; /*Espacio entre los enlaces*/
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #a0a0a0; /*Un gris claro para los enlaces*/
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-white); /* Cambia a blanco al pasar el mouse */
+}
+
+.nav-links a.active {
+    color: var(--text-white);
+    background-color: #33333333; /*Fondo sutil para el enlace activo*/
+}
+
+/* Botón para cambiar el tema */
+.theme-toggle-button {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.theme-toggle-button:hover {
+    background-color: #333;
+}
