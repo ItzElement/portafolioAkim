@@ -1,18 +1,41 @@
-/* Vamos a establecer los colores */
+/* Archivo: public/css/navbar.css */
+
+/* :root define las variables para el tema claro (por defecto) */
 :root {
-    --primary-orange: #F98125;
-    --dark-background: #121212;
-    --text-white: #FFFFFF;
+    --background: #f4f4f4; /* Un fondo casi blanco para el body */
+    --text: #1a1a1a;
+    --border: #e0e0e0;
+
+    /* === VARIABLES PARA LA BARRA DE NAVEGACIÓN (MODO CLARO) === */
+    --nav-background-color: rgba(255, 255, 255, 0.7); /* Cristal blanco translúcido */
+    --nav-border-color: rgba(0, 0, 0, 0.1);
+    --nav-text-color: #555555;                 /* Texto de links inactivos */
+    --nav-text-hover-active-color: #000000;    /* Texto de links activos/hover */
+    --nav-pill-background: #ffffff;            /* Fondo de la píldora deslizante */
+    --toggle-button-bg: #f0f0f0;
+    --toggle-button-border: #ddd;
 }
 
+html { 
+    scroll-behavior: smooth;
+}
+/* html.dark define las variables para cuando el tema oscuro está activo */
 html.dark {
     --background: #121212;
-    --text: #ffffff;
-    --accent: #333333;
-    --accent-text: #ffffff;
+    --text: #e0e0e0;
     --border: #333;
+
+    /* === VARIABLES PARA LA BARRA DE NAVEGACIÓN (MODO OSCURO) === */
+    --nav-background-color: rgba(30, 30, 30, 0.75); /* Cristal negro translúcido */
+    --nav-border-color: rgba(255, 255, 255, 0.1);
+    --nav-text-color: #a0a0a0;
+    --nav-text-hover-active-color: #ffffff;
+    --nav-pill-background: #333333;
+    --toggle-button-bg: #2a2a2a;
+    --toggle-button-border: #444;
 }
 
+/* --- ESTILOS GENERALES (la mayoría sin cambios) --- */
 * {
     margin: 0;
     padding: 0;
@@ -24,62 +47,35 @@ body {
     color: var(--text);
     margin: 0;
     transition: background-color 0.3s ease, color 0.3s ease;
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Estilos para la barra de navegación */
+/* --- ESTILOS DE LA BARRA DE NAVEGACIÓN --- */
 header {
-    /*Hacemos que la barra se quede fija en la parte superior*/
-    position: sticky;
+    position: fixed;
     top: 0;
     width: 100%;
+    z-index: 1000;
     display: flex;
-    padding: 20px 5%; /*Espaciado interno*/
     justify-content: center;
-    position: relative;
-    z-index: 1000; /*Que siempre este encima de otros elementos*/
- }
+    padding: 1px 0; /* Reducimos el padding lateral para que no afecte al botón */
+}
 
 .navbar-apple {
     display: flex;
     align-items: center;
-    gap: 20px; /* Espacio entre los elementos de la lista */
-    background-color: #1e1e1e; /* Un gris oscuro para que resalte un poco */
-    padding: 12px 30px; /* Espaciado interno para darle forma */
-    border-radius: 50px; /* ¡Esto crea la forma de píldora! */
-    border: 1px solid #333;
-    /* Efecto opcional de "cristal esmerilado" muy moderno */
-    background-color: rgba(30, 30, 30, 0.75);
-    backdrop-filter: blur(10px);
+    padding: 12px 30px;
+    border-radius: 50px;
+    
+    /* ¡AQUÍ ESTÁ LA MAGIA! Usamos las variables de CSS */
+    background-color: var(--nav-background-color);
+    border: 1px solid var(--nav-border-color);
+    backdrop-filter: blur(12px); /* Puedes ajustar el desenfoque a tu gusto */
+    -webkit-backdrop-filter: blur(12px); /* Para compatibilidad con Safari */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/*Estilo de la lista de enlaces*/
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 35px; /*Espacio entre los enlaces*/
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links a {
-    color: #a0a0a0; /*Un gris claro para los enlaces*/
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 8px 12px;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: var(--text-white); /* Cambia a blanco al pasar el mouse */
-}
-
-.nav-links a.active {
-    color: var(--text-white);
-    background-color: #33333333; /*Fondo sutil para el enlace activo*/
-}
+/* El resto de estilos se moverán al componente para mayor orden */
 
 /* Botón para cambiar el tema */
 .theme-toggle-button {
@@ -87,10 +83,6 @@ header {
     right: 5%;
     top: 50%;
     transform: translateY(-50%);
-
-    background-color: #2a2a2a;
-    border: 1px solid #444;
-    color: white;
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -99,9 +91,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease;
+
+    /* Usamos variables para el botón también */
+    background-color: var(--toggle-button-bg);
+    border: 1px solid var(--toggle-button-border);
+    color: var(--text); /* El color del emoji/ícono se adapta */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .theme-toggle-button:hover {
-    background-color: #333;
+    background-color: var(--nav-pill-background); /* Reutilizamos una variable para el hover */
 }
