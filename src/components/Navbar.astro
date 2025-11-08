@@ -110,4 +110,23 @@ const getPageName = (path) => path.endsWith('/') && path.length > 1 ? path.slice
         // ...mueve la píldora de vuelta al link que está activo
         moveSlider(activeLink);
     });
+
+    // Cambio de tema (claro/oscuro)
+    const themeToggleButton = document.querySelector('.theme-toggle-button');
+    themeToggleButton.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+
+        //Determina el tema actual y lo guarda en localStorage
+        const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        localStorage.setItem('theme', currentTheme);
+
+        //Cambia el ícono del botón según el tema
+        themeToggleButton.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+    });
+
+    // Con esto aseguramos que el ícono sea el correcto al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        themeToggleButton.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+    });
 </script>

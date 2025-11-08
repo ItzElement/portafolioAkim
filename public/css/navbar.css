@@ -5,6 +5,14 @@
     --text-white: #FFFFFF;
 }
 
+html.dark {
+    --background: #121212;
+    --text: #ffffff;
+    --accent: #333333;
+    --accent-text: #ffffff;
+    --border: #333;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,8 +20,10 @@
 }
 
 body {
-    background-color: var(--dark-background);
-    color: var(--text-white);
+    background-color: var(--background);
+    color: var(--text);
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
     font-family: Arial, sans-serif;
 }
 
