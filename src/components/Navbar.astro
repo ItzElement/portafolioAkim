@@ -75,6 +75,15 @@ const getPageName = (path) => path.endsWith('/') && path.length > 1 ? path.slice
         background-color: var(--nav-pill-background);
         border-radius: 30px;
         transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transición suave con rebote */
+        /* Efecto de cristal */
+        background-color: var(--nav-pill-bg-glass); 
+
+        /* 2. Añadimos un borde sutil para definirla */
+        border: 1px solid var(--nav-border-color); /* Reutilizamos el borde de la barra principal */
+
+        /* 3. Aplicamos el desenfoque */
+        backdrop-filter: blur(5px); /* Un desenfoque muy ligero para no sobrecargar */
+        -webkit-backdrop-filter: blur(5px);
     }
 </style>
 

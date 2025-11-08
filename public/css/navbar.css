@@ -7,13 +7,16 @@
     --border: #e0e0e0;
 
     /* === VARIABLES PARA LA BARRA DE NAVEGACIÓN (MODO CLARO) === */
-    --nav-background-color: rgba(255, 255, 255, 0.7); /* Cristal blanco translúcido */
+    --nav-background-color: rgba(255, 255, 255, 0.3); /* Cristal blanco translúcido */
     --nav-border-color: rgba(0, 0, 0, 0.1);
     --nav-text-color: #555555;                 /* Texto de links inactivos */
     --nav-text-hover-active-color: #000000;    /* Texto de links activos/hover */
     --nav-pill-background: #ffffff;            /* Fondo de la píldora deslizante */
     --toggle-button-bg: #f0f0f0;
     --toggle-button-border: #ddd;
+    --toggle-button-bg-glass: rgba(255, 255, 255, 0.5); /* Fondo de cristal blanco */
+    --toggle-button-border-glass: rgba(255, 255, 255, 0.7); /* Borde que simula reflejo */
+    --nav-pill-bg-glass: rgba(255, 255, 255, 0.2); /* Un blanco más opaco para que resalte sobre la barra */
 }
 
 html { 
@@ -26,13 +29,16 @@ html.dark {
     --border: #333;
 
     /* === VARIABLES PARA LA BARRA DE NAVEGACIÓN (MODO OSCURO) === */
-    --nav-background-color: rgba(30, 30, 30, 0.75); /* Cristal negro translúcido */
-    --nav-border-color: rgba(255, 255, 255, 0.1);
+    --nav-background-color: rgba(20, 20, 20, 0.5); /* Cristal negro translúcido */
+    --nav-border-color: rgba(255, 255, 255, 0.15);
     --nav-text-color: #a0a0a0;
     --nav-text-hover-active-color: #ffffff;
     --nav-pill-background: #333333;
     --toggle-button-bg: #2a2a2a;
     --toggle-button-border: #444;
+    --toggle-button-bg-glass: rgba(50, 50, 50, 0.2);   /* Fondo de cristal oscuro */
+    --toggle-button-border-glass: rgba(255, 255, 255, 0.15); /* Borde sutil */
+    --nav-pill-bg-glass: rgba(100, 100, 100, 0.1); /* Un gris translúcido, más claro que el fondo de la barra */
 }
 
 /* --- ESTILOS GENERALES (la mayoría sin cambios) --- */
@@ -70,8 +76,8 @@ header {
     /* ¡AQUÍ ESTÁ LA MAGIA! Usamos las variables de CSS */
     background-color: var(--nav-background-color);
     border: 1px solid var(--nav-border-color);
-    backdrop-filter: blur(12px); /* Puedes ajustar el desenfoque a tu gusto */
-    -webkit-backdrop-filter: blur(12px); /* Para compatibilidad con Safari */
+    backdrop-filter: blur(25px); /* Puedes ajustar el desenfoque a tu gusto */
+    -webkit-backdrop-filter: blur(25px); /* Para compatibilidad con Safari */
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -97,8 +103,16 @@ header {
     border: 1px solid var(--toggle-button-border);
     color: var(--text); /* El color del emoji/ícono se adapta */
     transition: background-color 0.3s ease, border-color 0.3s ease;
+
+    /* Efecto de cristal */
+    background-color: var(--toggle-button-bg-glass);
+    border: 1px solid var(--toggle-button-border-glass);
+    backdrop-filter: blur(10px); /* Un desenfoque sutil para el botón */
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .theme-toggle-button:hover {
+    /* Mantenemos el fondo para el hover*/
     background-color: var(--nav-pill-background); /* Reutilizamos una variable para el hover */
+    transform: translateY(-50%) scale(1.1); /* Añadimos un pequeño efecto al pasar el mouse */
 }
