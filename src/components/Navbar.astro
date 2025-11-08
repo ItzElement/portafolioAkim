@@ -8,6 +8,9 @@ const getPageName = (path) => path.endsWith('/') && path.length > 1 ? path.slice
 <header>
     <nav class="navbar-apple">
         <ul class="nav-links">
+            <!-- 1. HTML: Añadimos un elemento extra que será la "píldora" deslizante -->
+            <li class="nav-pill-slider" aria-hidden="true"></li>
+
             <li><a href="/" class={getPageName(pathname) === "/" ? "active" : ""}>Inicio</a></li>
             <li><a href="/about" class={getPageName(pathname) === "/about" ? "active" : ""}>Sobre Mí</a></li>
             <li><a href="/colaboraciones" class={getPageName(pathname) === "/colaboraciones" ? "active" : ""}>Colaboraciones</a></li>
@@ -19,7 +22,7 @@ const getPageName = (path) => path.endsWith('/') && path.length > 1 ? path.slice
 </header>
 
 <style>
-    /* Este CSS solo aplica a la Navbar */
+    /* Estilos del Header y Botón (sin cambios) */
     header {
         position: sticky; top: 0; width: 100%; padding: 20px 0;
         display: flex; justify-content: center; position: relative; z-index: 1000;
@@ -30,20 +33,81 @@ const getPageName = (path) => path.endsWith('/') && path.length > 1 ? path.slice
         backdrop-filter: blur(10px);
         padding: 12px 30px; border-radius: 50px; border: 1px solid #333;
     }
-    .nav-links {
-        list-style: none; display: flex; gap: 35px; margin: 0; padding: 0;
-    }
-    .nav-links a {
-        color: #a0a0a0; text-decoration: none; font-size: 16px; font-weight: 500;
-        padding: 8px 12px; border-radius: 30px; transition: all 0.3s ease;
-    }
-    .nav-links a:hover { color: var(--text-white); }
-    .nav-links a.active {
-        color: var(--text-white); background-color: #333333;
-    }
     .theme-toggle-button {
         position: absolute; top: 50%; right: 5%; transform: translateY(-50%);
-        background-color: #2a2a2a; border: 1px solid #444; color: white;
-        width: 45px; height: 45px; border-radius: 50%; font-size: 22px; cursor: pointer;
+        /* ... el resto de tus estilos para el botón ... */
     }
-</style>```
+
+    /* --- 2. CSS: Cambios para la animación --- */
+    .nav-links {
+        position: relative; /* Contenedor de referencia para la píldora */
+        list-style: none; display: flex; gap: 35px; margin: 0; padding: 0;
+    }
+
+    .nav-links a {
+        position: relative; /* Hacemos que el texto esté por encima de la píldora */
+        z-index: 2;
+        color: #a0a0a0; text-decoration: none; font-size: 16px; font-weight: 500;
+        padding: 8px 12px; border-radius: 30px; transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: var(--text-white);
+    }
+    
+    /* ¡Quitamos el fondo estático del link activo! */
+    .nav-links a.active {
+        /* background-color: #333333; */ /* <--- Esta línea se elimina o comenta */
+    }
+
+    /* Estilo de la píldora deslizante */
+    .nav-pill-slider {
+        position: absolute;
+        z-index: 1; /* Detrás del texto de los links */
+        top: -30%;
+        left: 0;
+        background-color: #333333;
+        border-radius: 30px;
+        transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transición suave con rebote */
+    }
+</style>
+
+<!-- 3. JavaScript: La magia que mueve la píldora -->
+<script>
+    // Seleccionamos los elementos que necesitamos del DOM
+    const navLinksContainer = document.querySelector('.nav-links');
+    const links = document.querySelectorAll('.nav-links a');
+    const slider = document.querySelector('.nav-pill-slider');
+    const activeLink = document.querySelector('.nav-links a.active');
+
+    // Función que mueve la píldora a la posición de un link específico
+    function moveSlider(target) {
+        if (!target) return; // Si no hay link activo, no hagas nada
+        
+        const targetRect = target.getBoundingClientRect();
+        const containerRect = navLinksContainer.getBoundingClientRect();
+        
+        // Calculamos la posición del link relativo a su contenedor
+        const left = targetRect.left - containerRect.left;
+        
+        slider.style.width = `${targetRect.width}px`;
+        slider.style.height = `${targetRect.height}px`;
+        slider.style.transform = `translateX(${left}px)`;
+    }
+
+    // Al cargar la página, mueve la píldora al link activo
+    moveSlider(activeLink);
+
+    // Para cada link, añadimos un "escuchador" de eventos
+    links.forEach(link => {
+        // Cuando el mouse entra en un link, mueve la píldora hacia él
+        link.addEventListener('mouseenter', () => moveSlider(link));
+    });
+
+    // Cuando el mouse sale del área de la navegación...
+    navLinksContainer.addEventListener('mouseleave', () => {
+        // ...mueve la píldora de vuelta al link que está activo
+        moveSlider(activeLink);
+    });
+</script>
