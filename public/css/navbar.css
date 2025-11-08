@@ -17,6 +17,8 @@
     --toggle-button-bg-glass: rgba(255, 255, 255, 0.5); /* Fondo de cristal blanco */
     --toggle-button-border-glass: rgba(255, 255, 255, 0.7); /* Borde que simula reflejo */
     --nav-pill-bg-glass: rgba(255, 255, 255, 0.2); /* Un blanco más opaco para que resalte sobre la barra */
+    --nav-shadow: 2px 14px 20px -5px rgba(0, 0, 0, 0.2);
+
 }
 
 html { 
@@ -39,19 +41,31 @@ html.dark {
     --toggle-button-bg-glass: rgba(50, 50, 50, 0.2);   /* Fondo de cristal oscuro */
     --toggle-button-border-glass: rgba(255, 255, 255, 0.15); /* Borde sutil */
     --nav-pill-bg-glass: rgba(100, 100, 100, 0.1); /* Un gris translúcido, más claro que el fondo de la barra */
+    --nav-shadow: none;
 }
 
-/* --- ESTILOS GENERALES (la mayoría sin cambios) --- */
-* {
+/* --- ESTILOS GENERALES --- */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 body {
     background-color: var(--background);
     color: var(--text);
     margin: 0;
+    padding: 0;
+    min-height: 100%;
+    width: 100%;
+    overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -59,12 +73,16 @@ body {
 /* --- ESTILOS DE LA BARRA DE NAVEGACIÓN --- */
 header {
     position: fixed;
-    top: 0;
+    top: 1rem;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 1000;
     display: flex;
     justify-content: center;
-    padding: 1px 0; /* Reducimos el padding lateral para que no afecte al botón */
+    margin: 0;
+    padding: 0;
+    background: none;
 }
 
 .navbar-apple {
@@ -78,7 +96,8 @@ header {
     border: 1px solid var(--nav-border-color);
     backdrop-filter: blur(25px); /* Puedes ajustar el desenfoque a tu gusto */
     -webkit-backdrop-filter: blur(25px); /* Para compatibilidad con Safari */
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: var(--nav-shadow);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* El resto de estilos se moverán al componente para mayor orden */
