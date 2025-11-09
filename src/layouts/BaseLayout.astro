@@ -18,7 +18,7 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
     <!-- Enlazamos nuestro CSS global que está en la carpeta /public -->
-    <link rel="icon" href="/logoAkim.jpeg" type="image/jpeg"/>
+    <link rel="icon" href="/public/img/logoAkim.jpeg" type="image/jpeg"/>
     <link rel="stylesheet" href="/css/navbar.css" />
 
     <!-- Con esto evitamos el flash del tema incorrecto -->
@@ -40,10 +40,8 @@ const { title } = Astro.props;
     </script>
 </head>
 <body>
-    <Navbar />
-    <main style="margin-top: 80px;">
-        <!-- El contenido de cada página individual irá aquí -->
-        <slot />
-    </main>
+     <Navbar />
+    <!-- ¡CORREGIDO! El <slot /> ahora está libre, permitiendo que Hero sea de ancho completo. -->
+    <slot />
 </body>
 </html>

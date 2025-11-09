@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  imageUrl: string;
+  isReversed?: boolean; // El '?' lo hace opcional
+}
+
+const { title, description, imageUrl, isReversed = false } = Astro.props;
+---
+
+<!-- Hemos quitado la <section> y el <div class="container..."> que lo envolvían.
+     Ahora el componente es solo el layout flex. -->
+<div class:list={[
+    "flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 w-full",
+    {"md:flex-row-reverse": isReversed}
+]}>
+    <div class="md:w-1/2">
+        <img src={imageUrl} alt={`Imagen del proyecto ${title}`} class="rounded-lg shadow-2xl w-full h-auto object-cover"/>
+    </div>
+
+    <div class="md:w-1/2 text-center md:text-left">
+        <h2 class="text-3xl font-bold mb-4">{title}</h2>
+        <p class="text-gray-600 dark:text-gray-300">{description}</p>
+        <a href="#" class="inline-block mt-6 bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">Ver Proyecto</a>
+    </div>
+</div>

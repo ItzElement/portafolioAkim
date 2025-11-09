@@ -1,7 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import FeaturedProject from '../components/FeaturedProject.astro';
 ---
 
 <BaseLayout title="Akim Aguilar - Portafolio">
-	<h1 class="text-5xl font-bold text-center text-blue-500 my-10">¡Hola Tailwind!</h1>
+	<Hero />
+	<!-- Cambiamos py-20 por pt-32 (padding-top: 8rem) para más espacio arriba. -->
+	<main class="pt-24 md:pt-32 pb-20 w-full">
+		<div class="container mx-auto px-4 max-w-5xl space-y-20 md:space-y-32">
+			<FeaturedProject 
+				title="Proyecto Uno" 
+				description="Descripción del proyecto uno. Este proyecto trata sobre..." 
+				imageUrl="/img/project-1.jpg"
+			/>
+			<FeaturedProject 
+				title="Proyecto Dos" 
+				description="Descripción del proyecto dos. Este proyecto se enfoca en..." 
+				imageUrl="/img/project-2.jpg"
+				isReversed={true}
+			/>
+		</div>
+	</main>
 </BaseLayout>

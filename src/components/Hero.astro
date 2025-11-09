@@ -1,0 +1,49 @@
+<section class="relative w-full text-white !mt-20 md:!mt-24 !pt-12 md:!pt-16 pb-40 md:pb-48 overflow-hidden">
+  <!-- Aseguramos que el contenedor esté centrado -->
+  <div class="container mx-auto px-6 max-w-4xl relative z-10">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
+      
+      <!-- Columna del Avatar -->
+      <div class="shrink-0">
+        <img 
+          src="/img/akimavatar.jpg" 
+          alt="Mi Avatar" 
+          class="h-32 w-32 md:h-40 md:w-40 rounded-full object-cover border-4 border-gray-500 shadow-lg"
+        />
+      </div>
+      
+      <!-- Columna del Texto -->
+      <div class="text-center md:text-left">
+        <h1 class="text-4xl md:text-5xl font-bold">
+          Hola, soy Akim Aguilar
+        </h1>
+        <p class="mt-4 text-lg text-white/80">
+          Tengo 27 años, 12 años creando contenido en Internet y 10 años dedicándome completamente al mundo de las redes sociales.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- El Divisor Curvo (sin cambios) -->
+  <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="relative block w-[calc(100%+1.3px)] h-[150px] md:h-[250px]">
+      <path 
+        fill-opacity="1"
+        d="M0,224L48,208C96,192,192,160,288,165.3C384,171,480,213,576,240C672,267,768,277,864,256C960,235,1056,181,1152,154.7C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
+  </div>
+</section>
+
+
+<style>
+    section {
+        position: relative;
+        background-color: #111827;
+        /* Removemos cualquier reseteo de margin y padding */
+    }
+    section :global(svg path) {
+        fill: var(--background);
+    }
+</style>
