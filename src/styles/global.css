@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/* :root define las variables para el tema claro (por defecto) */
+:root {
+    --background: #f4f4f4; /* Un fondo casi blanco para el body */
+    --text: #1a1a1a;
+    --border: #e0e0e0;
+
+    /* === VARIABLES PARA LA BARRA DE NAVEGACIÓN (MODO CLARO) === */
+    --nav-background-color: rgba(255, 255, 255, 0.3); /* Cristal blanco translúcido */
+    --nav-border-color: rgba(0, 0, 0, 0.1);
+    --nav-text-color: #555555;                 /* Texto de links inactivos */
+    --nav-text-hover-active-color: #000000;    /* Texto de links activos/hover */
+    --nav-pill-background: #ffffff;            /* Fondo de la píldora deslizante */
+    --toggle-button-bg: #f0f0f0;
+    --toggle-button-border: #ddd;
+    --toggle-button-bg-glass: rgba(255, 255, 255, 0.5); /* Fondo de cristal blanco */
+    --toggle-button-border-glass: rgba(255, 255, 255, 0.7); /* Borde que simula reflejo */
+    --nav-pill-bg-glass: rgba(255, 255, 255, 0.2); /* Un blanco más opaco para que resalte sobre la barra */
+    --nav-shadow: 2px 14px 20px -5px rgba(0, 0, 0, 0.2);
+
+}
+
+html { 
+    scroll-behavior: smooth;
+}
+/* html.dark define las variables para cuando el tema oscuro está activo */
+html.dark {
+    --background: #121212;
+    --text: #e0e0e0;
+    --border: #333;
+
+    /* === VARIABLES PARA LA BARRA DE NAVEGACIÓN (MODO OSCURO) === */
+    --nav-background-color: rgba(20, 20, 20, 0.5); /* Cristal negro translúcido */
+    --nav-border-color: rgba(255, 255, 255, 0.15);
+    --nav-text-color: #a0a0a0;
+    --nav-text-hover-active-color: #ffffff;
+    --nav-pill-background: #333333;
+    --toggle-button-bg: #2a2a2a;
+    --toggle-button-border: #444;
+    --toggle-button-bg-glass: rgba(50, 50, 50, 0.2);   /* Fondo de cristal oscuro */
+    --toggle-button-border-glass: rgba(255, 255, 255, 0.15); /* Borde sutil */
+    --nav-pill-bg-glass: rgba(100, 100, 100, 0.1); /* Un gris translúcido, más claro que el fondo de la barra */
+    --nav-shadow: none;
+}
+
+/* --- ESTILOS GENERALES --- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}

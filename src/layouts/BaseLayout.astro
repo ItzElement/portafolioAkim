@@ -1,6 +1,8 @@
 ---
 // Archivo: src/layouts/BaseLayout.astro
+import type { ACTION_ERROR_CODES } from 'astro:actions';
 import Navbar from '../components/Navbar.astro';
+import '../styles/global.css';
 
 interface Props {
 	title: string;
