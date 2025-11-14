@@ -3,6 +3,7 @@
 import type { ACTION_ERROR_CODES } from 'astro:actions';
 import Navbar from '../components/Navbar.astro';
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 
 interface Props {
 	title: string;
@@ -43,5 +44,7 @@ const { title } = Astro.props;
      <Navbar />
     <!-- ¡CORREGIDO! El <slot /> ahora está libre, permitiendo que Hero sea de ancho completo. -->
     <slot />
+
+    <Footer />
 </body>
 </html>
