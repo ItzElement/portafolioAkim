@@ -1,0 +1,107 @@
+---
+// Aquí podrías definir los logros como un array de objetos si quisieras hacerlo más dinámico en el futuro.
+const achievements = [
+  { value: 5.3, prefix: "+", suffix: "M", title: "Seguidores", description: "En todas las plataformas" },
+  { value: 12, prefix: "", suffix: "", title: "Años de Experiencia", description: "Creando contenido en línea" },
+  { value: 50, prefix: "", suffix: "+", title: "Colaboraciones", description: "Con marcas líderes en el mercado" },
+];
+---
+
+<section class="py-24 md:py-32">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <!-- Título de la sección -->
+        <h2 class="text-center text-4xl md:text-5xl font-bold">
+            Haciendo <span class="text-orange-400">historia</span> desde hace 12 años.
+        </h2>
+
+        <!-- Logros -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16 text-center">
+            <!-- Vamos a llenar el grid con los logros -->
+             {achievements.map((item) => (
+        <div class="p-4">
+        <!-- 2. PREPARACIÓN DEL HTML PARA LA ANIMACIÓN -->
+            <!-- Añadimos la clase 'animated-number' y los 'data-attributes' para que el JS sepa qué animar. -->
+            <p 
+                class="animated-number text-5xl md:text-6xl font-bold text-orange-400"
+                data-final-value={item.value}
+                data-prefix={item.prefix}
+                data-suffix={item.suffix}
+            >
+                0 {/* Empezamos en 0 */}
+            </p>
+            <h3 class="mt-2 text-xl font-semibold">
+                {item.title}
+            </h3>
+            <p class="mt-1 text-gray-600 dark:text-gray-400">
+                {item.description}
+            </p>
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Esta función se encarga de la animación de un solo número.
+    function animateNumber(element) {
+        const finalValue = parseFloat(element.dataset.finalValue);
+        const prefix = element.dataset.prefix || "";
+        const suffix = element.dataset.suffix || "";
+        const duration = 2000; // 2 segundos de animación
+        let startTime = null;
+
+        // requestAnimationFrame crea un bucle de animación suave.
+        function step(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+
+        // Fórmula de "ease-out" empieza rápido y frena al final.
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        let currentNum = easedProgress * finalValue;
+
+        // Formateamos el número para que se vea bien.
+        let displayNum;
+        if (finalValue < 10 && finalValue % 1 !== 0) {
+            // Si es un decimal pequeño (como 1.5), lo mostramos con un decimal.
+            displayNum = currentNum.toFixed(1);
+        } else {
+            // Si es un entero, lo redondeamos hacia arriba.
+            displayNum = Math.ceil(currentNum).toLocaleString();
+        }
+
+        element.textContent = `${prefix}${displayNum}${suffix}`;
+
+        // Si la animación no ha terminado, pedimos el siguiente frame.
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        } else {
+            // Al final, nos aseguramos de que muestre el valor exacto.
+            element.textContent = `${prefix}${finalValue.toLocaleString()}${suffix}`;
+        }
+        }
+        requestAnimationFrame(step);
+    }
+
+    // El Intersection Observer que vigila los números.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+        // Si el número está en la pantalla...
+        if (entry.isIntersecting) {
+            // ...inicia la animación...
+            animateNumber(entry.target);
+            // ...y deja de observarlo para que no se anime de nuevo.
+            observer.unobserve(entry.target);
+        }
+        });
+    }, {
+        // La animación se dispara cuando el 20% del elemento es visible.
+        threshold: 0.2
+    });
+
+    // Le decimos al observador qué elementos debe vigilar.
+    const numbersToAnimate = document.querySelectorAll('.animated-number');
+    numbersToAnimate.forEach((number) => {
+        observer.observe(number);
+  });
+</script>

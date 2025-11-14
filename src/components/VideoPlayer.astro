@@ -1,0 +1,36 @@
+---
+// ESTA PARTE FALTABA: Aquí definimos que el componente espera una prop.
+interface Props {
+  videoSrc: string;
+}
+const { videoSrc } = Astro.props;
+---
+
+<!-- 
+  Esta sección es el contenedor del video.
+  - 'relative' para posicionar el video dentro de ella.
+  - 'w-full' para que ocupe todo el ancho.
+  - 'h-screen' para que ocupe toda la altura de la pantalla.
+  - 'bg-black' actúa como un color de fondo mientras el video carga.
+-->
+<section class="relative w-full h-screen bg-black">
+  
+  <!-- 
+    El video está posicionado de forma absoluta para llenar la sección.
+    - 'absolute' lo saca del flujo normal.
+    - 'top-0 left-0 w-full h-full' hace que cubra la sección por completo.
+    - 'object-cover' es la clave: el video llena el espacio sin deformarse,
+      recortando los bordes si es necesario (justo lo que quieres en la parte superior).
+  -->
+  <video
+    src={videoSrc}
+    autoplay
+    loop
+    muted
+    playsinline
+    class="absolute top-0 left-0 w-full h-full object-cover"
+  >
+    Tu navegador no soporta videos.
+  </video>
+
+</section>
