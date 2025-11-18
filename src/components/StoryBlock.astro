@@ -1,0 +1,32 @@
+---
+interface Props {
+    imageUrl: string;
+    isReversed?: boolean;
+}
+
+const { imageUrl, isReversed = false } = Astro.props;
+---
+
+<div class:list={[
+  "flex flex-col md:flex-row items-center gap-12 md:gap-16",
+  { "md:flex-row-reverse": isReversed } // Invierte el orden si es necesario
+]}>
+  
+  <!-- Columna de la Imagen -->
+  <div class="md:w-1/3 shrink-0">
+    <img 
+      src={imageUrl} 
+      alt="Imagen sobre la historia de Akim" 
+      class="rounded-lg shadow-xl w-full h-auto object-cover"
+    />
+  </div>
+
+  <!-- Columna del Texto (el <slot /> es donde pondremos nuestro contenido) -->
+  <div class="md:w-2/3">
+    <!-- La clase 'prose' de Tailwind aplica estilos de tipografía hermosos automáticamente -->
+    <div class="prose prose-lg dark:prose-invert max-w-none text-xl md:text-2xl">
+      <slot />
+    </div>
+  </div>
+
+</div>

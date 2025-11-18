@@ -1,0 +1,25 @@
+---
+interface Props {
+    text: string;
+    author: string;
+}
+
+const { text, author} = Astro.props;
+---
+
+<sector class="py-20 md:py-28">
+    <div class="container mx-auto px-6 text-center">
+        <blockquote class="max-w-3xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold leading-tight">
+                "{text}"
+            </h2>
+            <cite class = "block mt-6 text-xl text-gray-500 dark:text-gray-400 not-italic">
+                - {author}
+            </cite>
+        </blockquote>
+    </div>
+</sector>
+
+<style>
+    
+</style>
