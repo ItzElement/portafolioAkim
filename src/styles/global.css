@@ -9,7 +9,7 @@
     /* === VARIABLES PARA LA BARRA DE NAVEGACIÓN (MODO CLARO) === */
     --nav-background-color: rgba(255, 255, 255, 0.3); /* Cristal blanco translúcido */
     --nav-border-color: rgba(0, 0, 0, 0.1);
-    --nav-text-color: #555555;                 /* Texto de links inactivos */
+    --nav-text-color: #393333;                 /* Texto de links inactivos */
     --nav-text-hover-active-color: #000000;    /* Texto de links activos/hover */
     --nav-pill-background: #ffffff;            /* Fondo de la píldora deslizante */
     --toggle-button-bg: #f0f0f0;

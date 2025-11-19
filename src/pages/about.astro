@@ -7,7 +7,7 @@ import Quote from '../components/Quote.astro';
 
 {/* 1. Cambiamos el título para que sea específico de esta página */}
 <BaseLayout title="Sobre Mí | Akim Aguilar">
-  <main class="py-24 md:py-32">
+  <main class="py-32 md:py-38">
     <!-- La Cita Principal (esto ya lo teníamos) -->
     <Quote 
       text="Solo hago lo que me gusta y lo hago a mi manera." 
@@ -15,7 +15,7 @@ import Quote from '../components/Quote.astro';
     />
 
     <!-- Contenedor que centra nuestro nuevo bloque de historia -->
-    <div class="container mx-auto px-6 max-w-5xl mt-20">
+    <div class="container mx-auto px-6 max-w-5xl mt-20 space-y-32 md:space-y-48">
       
     <!-- ¡AQUÍ ESTÁ LA NUEVA SECCIÓN! -->
     <StoryBlock imageUrl="/img/akimsobremi1.jpg">

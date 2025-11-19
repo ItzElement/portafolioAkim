@@ -7,13 +7,13 @@ interface Props {
 const { text, author} = Astro.props;
 ---
 
-<sector class="py-20 md:py-28">
-    <div class="container mx-auto px-6 text-center">
+<sector class="py-24 md:py-32">
+    <div class="container mx-auto px-20 text-center ">
         <blockquote class="max-w-3xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold leading-tight">
+            <h2 class="text-5xl md:text-5xl font-bold leading-tight">
                 "{text}"
             </h2>
-            <cite class = "block mt-6 text-xl text-gray-500 dark:text-gray-400 not-italic">
+            <cite class = "block mt-8 text-xl text-gray-500 dark:text-gray-400 not-italic">
                 - {author}
             </cite>
         </blockquote>
