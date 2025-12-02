@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Lexend', ...defaultTheme.fontFamily.sans],
+        serif: ['Lora', ...defaultTheme.fontFamily.serif],
       },
 
     },

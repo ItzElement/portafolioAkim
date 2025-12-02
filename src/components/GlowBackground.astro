@@ -1,0 +1,54 @@
+---
+// Ya no necesitamos props de posición porque siempre estará centrado y expandido
+---
+
+<!-- 
+  Posicionamiento:
+  - absolute inset-0: Ocupa todo el espacio del contenedor padre.
+  - overflow-hidden: Asegura que el brillo no se salga y cause scrollbars raros.
+  - -z-10: Se queda detrás del texto e imágenes.
+-->
+<div class="absolute inset-0 w-full h-full -z-10 overflow-visible flex justify-center items-center pointer-events-none">
+  
+  <!-- 
+    El Círculo de Luz:
+    - w-[80%] h-[80%]: Ahora es relativo al tamaño de la sección, ¡se adapta!
+    - min-w-[600px]: Asegura que no sea pequeño en móviles.
+    - animate-float: La nueva animación de movimiento.
+  -->
+  <div class="w-[80%] h-[80%] min-w-[400px] min-h-[400px] rounded-full blur-[100px] md:blur-[130px]
+              animate-float mt-100
+              bg-orange-400/50 mix-blend-multiply opacity-80
+              dark:bg-orange-600/30 dark:mix-blend-screen dark:opacity-50">
+  </div>
+</div>
+
+<style>
+  /* 
+    Animación "Float": 
+    Mueve el brillo suavemente en círculos y cambia su escala para que parezca vivo.
+  */
+  @keyframes float {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.6;
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1); /* Se mueve arriba-derecha */
+      opacity: 0.8;
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.95); /* Se mueve abajo-izquierda */
+      opacity: 0.7;
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.6;
+    }
+  }
+
+  .animate-float {
+    /* 15 segundos: movimiento muy lento y relajante */
+    animation: float 15s infinite ease-in-out; 
+  }
+</style>

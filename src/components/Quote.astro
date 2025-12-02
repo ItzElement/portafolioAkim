@@ -7,19 +7,40 @@ interface Props {
 const { text, author} = Astro.props;
 ---
 
-<sector class="py-24 md:py-32">
-    <div class="container mx-auto px-20 text-center ">
-        <blockquote class="max-w-3xl mx-auto">
-            <h2 class="text-5xl md:text-5xl font-bold leading-tight">
-                "{text}"
-            </h2>
-            <cite class = "block mt-8 text-xl text-gray-500 dark:text-gray-400 not-italic">
-                - {author}
-            </cite>
-        </blockquote>
+<!-- 1. Envolvemos todo en una sección con posicionamiento relativo y overflow oculto -->
+<section class="relative overflow-hidden">
+  
+  <!-- No funciona quien sabe por que -->
+  <!-- 2. El patrón de puntos (SVG de fondo) -->
+  <!-- <div class="absolute inset-0 z-0 opacity-5 dark:opacity-10">
+    <svg class="w-full h-full" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dots-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <circle fill="currentColor" cx="10" cy="10" r="1"></circle>
+        </pattern>
+      </defs>
+      <rect fill="url(#dots-pattern)" width="100%" height="100%"></rect>
+    </svg>
+  </div>
+  -->
+
+  <!-- 3. El contenido de la cita, ahora en una capa superior (z-10) -->
+  <div class="relative z-10 pt-12 md:pt-28 pb-4 md:pb-8">
+    <div class="container mx-auto px-8 text-center">
+      <blockquote class="max-w-3xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+          “{text}”
+        </h2>
+        <cite class="block mt-6 text-xl text-gray-500 dark:text-gray-400 not-italic">
+          ~ {author}
+        </cite>
+      </blockquote>
     </div>
-</sector>
+  </div>
+</section>
 
 <style>
-    
+  section {
+    background-color: var(--background);
+  }
 </style>

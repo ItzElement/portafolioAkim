@@ -1,0 +1,23 @@
+---
+interface Props {
+    text: string;
+}
+const { text } = Astro.props;
+---
+
+<div class="relative flex items-center justify-center w-full my-16 md:my-24">
+    <!-- Aquí vamos a hacer una línea decorativa -->
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+        <div class="w-full border-t-2 border-gray-200 dark:border-orange-400"></div>   
+    </div>
+
+    <!-- Aquí vamos a hacer un badge para cada tapar línea y bordes -->
+    <div class="relative z-10 bg-white dark:bg-[#845714] px-8 py-3 rounded-lg border-2 border-orange-400 dark:border-orange-400 shadow-xl transform hover:scale-105 transition-transform duration-300">
+    <h2 class="text-xl md:text-2xl font-black uppercase tracking-widest text-orange-400 dark:text-gray-200">
+      {text}
+    </h2>
+
+    <!-- Detalles decorativos -->
+    <div class="absolute top-1/2 left-3 w-1.5 h-1.5 bg-orange-400 rounded-full -translate-y-1/2"></div>
+    <div class="absolute top-1/2 right-3 w-1.5 h-1.5 bg-orange-400 rounded-full -translate-y-1/2"></div>
+</div>

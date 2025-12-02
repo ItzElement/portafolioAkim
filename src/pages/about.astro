@@ -3,6 +3,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StoryBlock from '../components/StoryBlock.astro';
 import Quote from '../components/Quote.astro';
+import SectionBadge from '../components/SectionBadge.astro';
+import GlowBackground from '../components/GlowBackground.astro';
 ---
 
 {/* 1. Cambiamos el título para que sea específico de esta página */}
@@ -15,22 +17,34 @@ import Quote from '../components/Quote.astro';
     />
 
     <!-- Contenedor que centra nuestro nuevo bloque de historia -->
-    <div class="container mx-auto px-6 max-w-5xl mt-20 space-y-32 md:space-y-48">
-      
-    <!-- ¡AQUÍ ESTÁ LA NUEVA SECCIÓN! -->
-    <StoryBlock imageUrl="/img/akimsobremi1.jpg">
+    <div class="container mx-auto px-2 max-w-5xl mt-20 space-y-8 md:space-y-12">
+      <div class="relative w-full py-12 md:py-24">
+      <GlowBackground />
+      <!-- Insertamos aquí el badge -->
+      <SectionBadge text="Historia" />
+      <!-- ¡AQUÍ ESTÁ LA NUEVA SECCIÓN! -->
+      <StoryBlock imageUrl="/img/akimsobremi1.jpg">
         <!-- Todo lo que escribas aquí dentro irá en la columna de texto -->
-        <h3>Mi Historia</h3>
-        <p>
-          Tengo 27 años, con 12 de ellos creando contenido en internet. Lo que empezó como un hobby en YouTube y Twitch, rápidamente se convirtió en una pasión y una carrera a tiempo completo, llevándome a expandir mi presencia a múltiples plataformas.
+        <p class="text-right">
+          Tengo 27 años, de los cuales 12 de ellos creando contenido en internet. 
         </p>
-    </StoryBlock>
+        <br>
+        <p class="text-right">Lo que empezó como un hobby en YouTube y Twitch, rápidamente se convirtió en una pasión y una carrera a tiempo completo, llevándome a expandir mi presencia a múltiples plataformas.</p>
+      </StoryBlock>
+    </div>
       <!-- Contenido y Plataformas -->
+    <!-- Se inserta badge para la segunda sección -->
+    <div class="relative w-full py-12 md:py-24">
+    <GlowBackground />
+    <SectionBadge text="Plataformas y Contenido" />
     <StoryBlock imageUrl="/img/akimsobremi2.jpg" isReversed={true}>
-        <h3>Plataformas y Contenido</h3>
         <p>
             Hoy en día, puedes encontrarme en casi todas las redes sociales, incluyendo YouTube, Twitch, Instagram, TikTok, X y
-            Facebook. Mi contenido se centra en:
+            Facebook.
+        </p>
+        <br>
+        <p>
+        Mi contenido se centra en:
         </p>
         <ul>
             <li><strong>Vlogs:</strong> Viajes, tecnología, comida y mi pasión por el béisbol.</li>
@@ -38,18 +52,34 @@ import Quote from '../components/Quote.astro';
             <li><strong>Formatos Cortos:</strong> Resúmenes verticales de vlogs y momentos destacados de gaming</li>
         </ul>
     </StoryBlock>
-
+    </div>
     <!-- Texto centrado debajo de la imagen -->
+    <div class="relative w-full py-12 md:py-12">
+    <GlowBackground/>
+    <SectionBadge text="Más allá del Contenido" />
     <div>
         <img src="/img/akimsobremi3.jpg" alt="Visión a futuro" class="rounded-lg shadow-xl w-full max-w-2xl mx-auto h-auto object-cover"/>
-            <div class="prose prose-xl dark:prose-invert max-w-3xl mx-auto text-center mt-12 text-xl md:text-2xl">
-                <h3>Más allá del Contenido</h3>
+            <div class="prose prose-xl dark:prose-invert max-w-3xl mx-auto text-center mt-12 text-xl md:text-2xl font-serif story-text">
                 <p>
-                    Además de crear contenido, también actúo como manager e intermediario, ayudando a otros creadores a conectar con marcas. Mi gran
-                    meta es llevar esta experiencia al siguiente nivel y fundar mi propia agencia de talento en el futuro.
+                    Además de crear contenido, también actúo como manager e intermediario, ayudando a otros creadores a conectar con marcas.
+                </p>
+                <br>
+                <p>
+                  Mi gran meta es llevar esta experiencia al siguiente nivel y fundar mi propia agencia de talento en el futuro.
                 </p>
             </div>
         </div>
     </div>
+    </div>
   </main>
 </BaseLayout>
+
+<style>
+  .story-text {
+    color: var(--text);
+  }
+  
+  .story-text :global(*) {
+    color: var(--text) !important;
+  }
+</style>

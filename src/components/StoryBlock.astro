@@ -8,12 +8,12 @@ const { imageUrl, isReversed = false } = Astro.props;
 ---
 
 <div class:list={[
-  "flex flex-col md:flex-row items-center gap-12 md:gap-16",
+  "flex flex-col md:flex-row items-center gap-12 md:gap-20",
   { "md:flex-row-reverse": isReversed } // Invierte el orden si es necesario
 ]}>
   
   <!-- Columna de la Imagen -->
-  <div class="md:w-1/3 shrink-0">
+  <div class="md:w-5/12 shrink-0">
     <img 
       src={imageUrl} 
       alt="Imagen sobre la historia de Akim" 
@@ -22,11 +22,21 @@ const { imageUrl, isReversed = false } = Astro.props;
   </div>
 
   <!-- Columna del Texto (el <slot /> es donde pondremos nuestro contenido) -->
-  <div class="md:w-2/3 py-12">
+  <div class="md:w-7/12 py-12">
     <!-- La clase 'prose' de Tailwind aplica estilos de tipografía hermosos automáticamente -->
-    <div class="prose prose-lg dark:prose-invert max-w-none text-xl md:text-2xl">
+    <div class="prose prose-lg dark:prose-invert max-w-none font-serif text-xl md:text-2xl story-text">
       <slot />
     </div>
   </div>
 
 </div>
+
+<style>
+  .story-text {
+    color: var(--text);
+  }
+  
+  .story-text :global(*) {
+    color: var(--text) !important;
+  }
+</style>
