@@ -75,3 +75,18 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* Con esto, le metemos la animación de revelado al contenido al hacer scroll */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); /* Curva customizada para un ejecto suave */
+    filter: blur(5px); /* Desenfoque inicial pequeño */
+}
+
+/* Estado final al pasar por el componente*/
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}

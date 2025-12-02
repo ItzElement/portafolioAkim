@@ -11,32 +11,38 @@ import GlowBackground from '../components/GlowBackground.astro';
 <BaseLayout title="Sobre Mí | Akim Aguilar">
   <main class="py-32 md:py-38">
     <!-- La Cita Principal (esto ya lo teníamos) -->
+    <div class="reveal-on-scroll">
     <Quote 
       text="Solo hago lo que me gusta y lo hago a mi manera." 
       author="Akim Aguilar"
     />
+    </div>
 
     <!-- Contenedor que centra nuestro nuevo bloque de historia -->
     <div class="container mx-auto px-2 max-w-5xl mt-20 space-y-8 md:space-y-12">
-      <div class="relative w-full py-12 md:py-24">
-      <GlowBackground />
-      <!-- Insertamos aquí el badge -->
-      <SectionBadge text="Historia" />
-      <!-- ¡AQUÍ ESTÁ LA NUEVA SECCIÓN! -->
-      <StoryBlock imageUrl="/img/akimsobremi1.jpg">
-        <!-- Todo lo que escribas aquí dentro irá en la columna de texto -->
-        <p class="text-right">
-          Tengo 27 años, de los cuales 12 de ellos creando contenido en internet. 
-        </p>
-        <br>
-        <p class="text-right">Lo que empezó como un hobby en YouTube y Twitch, rápidamente se convirtió en una pasión y una carrera a tiempo completo, llevándome a expandir mi presencia a múltiples plataformas.</p>
-      </StoryBlock>
+        <div class="relative w-full py-12 md:py-24">
+        <GlowBackground />
+        <!-- Insertamos aquí el badge -->
+        <div class="reveal-on-scroll">
+          <SectionBadge text="Historia" />
+        </div>
+        <!-- ¡AQUÍ ESTÁ LA NUEVA SECCIÓN! -->
+        <StoryBlock imageUrl="/img/akimsobremi1.jpg">
+          <!-- Todo lo que escribas aquí dentro irá en la columna de texto -->
+          <p class="text-right">
+            Tengo 27 años, de los cuales 12 de ellos creando contenido en internet. 
+          </p>
+          <br>
+          <p class="text-right">Lo que empezó como un hobby en YouTube y Twitch, rápidamente se convirtió en una pasión y una carrera a tiempo completo, llevándome a expandir mi presencia a múltiples plataformas.</p>
+        </StoryBlock>
     </div>
       <!-- Contenido y Plataformas -->
     <!-- Se inserta badge para la segunda sección -->
     <div class="relative w-full py-12 md:py-24">
     <GlowBackground />
+    <div class="reveal-on-scroll">
     <SectionBadge text="Plataformas y Contenido" />
+    
     <StoryBlock imageUrl="/img/akimsobremi2.jpg" isReversed={true}>
         <p>
             Hoy en día, puedes encontrarme en casi todas las redes sociales, incluyendo YouTube, Twitch, Instagram, TikTok, X y
@@ -53,9 +59,11 @@ import GlowBackground from '../components/GlowBackground.astro';
         </ul>
     </StoryBlock>
     </div>
+    </div>
     <!-- Texto centrado debajo de la imagen -->
     <div class="relative w-full py-12 md:py-12">
     <GlowBackground/>
+    <div class="reveal-on-scroll">
     <SectionBadge text="Más allá del Contenido" />
     <div>
         <img src="/img/akimsobremi3.jpg" alt="Visión a futuro" class="rounded-lg shadow-xl w-full max-w-2xl mx-auto h-auto object-cover"/>
@@ -71,6 +79,7 @@ import GlowBackground from '../components/GlowBackground.astro';
         </div>
     </div>
     </div>
+    </div>  
   </main>
 </BaseLayout>
 

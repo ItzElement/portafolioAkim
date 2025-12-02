@@ -6,7 +6,9 @@ import AchievementsSection from '../components/AchievementsSection.astro';
 ---
 
 <BaseLayout title="Akim Aguilar - Portafolio">
+	<div class="reveal-on-scroll">
 	<Hero />
+	</div>
 	<!-- Cambiamos py-20 por pt-32 (padding-top: 8rem) para más espacio arriba. -->
 	<!-- 2. Reemplazamos la sección de proyectos con la sección de video -->
 	<VideoPlayer videoSrc="/videos/UFC2.webm">
@@ -15,6 +17,7 @@ import AchievementsSection from '../components/AchievementsSection.astro';
 		     <h2 class="text-white text-5xl font-bold drop-shadow-lg">Mi Trayectoria</h2>
 		-->
 	</VideoPlayer>
-
+	<div class="reveal-on-scroll">
 	<AchievementsSection />
+	</div>
 </BaseLayout>
