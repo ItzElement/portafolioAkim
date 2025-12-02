@@ -2,7 +2,7 @@
 
 /* :root define las variables para el tema claro (por defecto) */
 :root {
-    --background: #f4f4f4; /* Un fondo casi blanco para el body */
+    --background: #f5f5f5; /* Un fondo casi blanco para el body */
     --text: #1a1a1a;
     --border: #e0e0e0;
 
