@@ -1,0 +1,260 @@
+---
+// Array de logos (duplicaremos estos visualmente para el efecto infinito)
+// Por ahora usa placeholders o pon las rutas de tus logos en /public/img/logos/
+const brands = [
+  { name: "G2A", logo: "/img/colabs/G2ALogo.svg" },
+  { name: "Minecraft", logo: "/img/colabs/MINECRAFTLogo.svg" },
+  { name: "ElGato", logo: "/img/colabs/ELGATOLogo.svg" },
+  { name: "MLB", logo: "/img/colabs/MLBLogo.svg" },
+  { name: "Gamesa", logo: "/img/colabs/GAMESALogo.svg" },
+  { name: "Temu", logo: "/img/colabs/TEMULogo.svg" },
+  { name: "Clutch", logo: "/img/colabs/CLUTCHLogo.svg" },
+  { name: "Microsoft", logo: "/img/colabs/MICROSOFTLogo.svg" },
+  { name: "VivaAerobus", logo: "/img/colabs/VIVAAEROBUSLogo.svg" },
+  { name: "Xbox", logo: "/img/colabs/XBOXLogo.svg" },
+  { name: "Hasbro", logo: "/img/colabs/HASBROLogo.svg" },
+  { name: "OXXO", logo: "/img/colabs/OXXOLogo.svg" },
+  { name: "Ubisoft", logo: "/img/colabs/UBISOFTLogo.svg" },
+  { name: "Snickers", logo: "/img/colabs/SNICKERSLogo.svg" },
+  { name: "7Eleven", logo: "/img/colabs/7ELEVENLogo.svg" },
+  { name: "Twitch", logo: "/img/colabs/TWITCHLogo.svg" },
+  { name: "Rappi", logo: "/img/colabs/RAPPILogo.svg" },
+  { name: "Amazon", logo: "/img/colabs/AMAZONLogo.svg" },
+  { name: "UDEM", logo: "/img/colabs/UDEMLogo.png" },
+  { name: "Activision", logo: "/img/colabs/ACTIVISIONLogo.svg" },
+  { name: "EcoFlow", logo: "/img/colabs/ECOFLOWLogo.svg" },
+  { name: "NFL", logo: "/img/colabs/NFLLogo.svg" },
+  { name: "AmazonMusic", logo: "/img/colabs/AMAZONMUSICLogo.svg" },
+  { name: "TotalEnergies", logo: "/img/colabs/TOTALENERGIESLogo.svg" },
+  { name: "Insta360", logo: "/img/colabs/INSTA360Logo.svg" },
+  { name: "KFC", logo: "/img/colabs/KFCLogo.svg" },
+  { name: "Carpuride", logo: "/img/colabs/CARPURIDELogo.png" },
+  { name: "Sico", logo: "/img/colabs/SICOLogo.svg" },
+  { name: "RepublicOfGamers", logo: "/img/colabs/REPUBLICOFGAMERSLogo.svg" },
+  { name: "Vertagear", logo: "/img/colabs/VERTAGEARLogo.svg" },
+  { name: "Bluetti", logo: "/img/colabs/BLUETTILogo.svg" },
+  { name: "Razer", logo: "/img/colabs/RAZERLogo.svg" },
+  { name: "BenQ", logo: "/img/colabs/BENQLogo.svg" },
+  { name: "NVIDIA", logo: "/img/colabs/NVIDIALogo.svg" },
+  { name: "Blizzard", logo: "/img/colabs/BLIZZARDLogo.svg" },
+];
+---
+
+<div class="w-full overflow-hidden py-10 border-y border-white/5 bg-white/5 backdrop-blur-sm">
+    <div class="relative w-full">
+        <!-- Contenedor del carrusel con scroll -->
+        <div 
+            id="brand-carousel"
+            class="flex overflow-x-auto scrollbar-hide gap-8 md:gap-16 cursor-grab active:cursor-grabbing"
+        >
+            {/* Primer set de logos */}
+            {brands.map((brand) => {
+                const isSmallLogo = ['Clutch', 'Ubisoft', 'EcoFlow', 'Sico', 'Bluetti', 'Razer', 'NVIDIA'].includes(brand.name);
+                return (
+                <div class="shrink-0 flex items-center justify-center min-w-[150px] opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 select-none">
+                    <img src={brand.logo} alt={brand.name} class={`w-auto object-contain pointer-events-none logo-adaptive ${isSmallLogo ? 'h-16 md:h-20' : 'h-12'}`} draggable="false" />
+                </div>
+            )})
+            }
+            {/* Segundo set de logos (duplicado para loop infinito) */}
+            {brands.map((brand) => {
+                const isSmallLogo = ['Clutch', 'Ubisoft', 'EcoFlow', 'Sico', 'Bluetti', 'Razer', 'NVIDIA'].includes(brand.name);
+                return (
+                <div class="shrink-0 flex items-center justify-center min-w-[150px] opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 select-none">
+                    <img src={brand.logo} alt={brand.name} class={`w-auto object-contain pointer-events-none logo-adaptive ${isSmallLogo ? 'h-16 md:h-20' : 'h-12'}`} draggable="false" />
+                </div>
+            )})
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+  /* Ocultar barra de scroll pero mantener funcionalidad */
+  .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+  }
+  .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+
+  /* Adaptación de logos para mejor visibilidad */
+  .logo-adaptive {
+    transition: filter 0.3s ease;
+  }
+
+  /* Modo claro: mantener colores originales */
+  :global(html:not(.dark)) .logo-adaptive {
+    filter: brightness(0.85) contrast(1.05);
+  }
+
+  /* Modo oscuro: aumentar brillo de forma sutil y reducir saturación para colores naturales */
+  :global(html.dark) .logo-adaptive {
+    filter: brightness(1.8) contrast(0.95) saturate(0.7) drop-shadow(0 0 3px rgba(255, 255, 255, 0.2));
+  }
+</style>
+
+<script>
+    const carousel = document.getElementById('brand-carousel');
+    let autoScrollInterval: number;
+    let isPaused = false;
+    let lastUserScroll = 0;
+    
+    // Variables para drag-to-scroll con inercia
+    let isDown = false;
+    let startX = 0;
+    let scrollLeftStart = 0;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let momentumInterval: number | undefined;
+
+    // Autoplay continuo y suave (velocidad aumentada)
+    const startContinuousScroll = () => {
+      autoScrollInterval = setInterval(() => {
+        if (!carousel || isPaused) return;
+        
+        // Mover 1.2 pixels para velocidad más rápida pero aún legible
+        carousel.scrollLeft += 1.2;
+        
+        // Cuando llegamos a la mitad (final del primer set), resetear al inicio
+        const halfWidth = carousel.scrollWidth / 2;
+        if (carousel.scrollLeft >= halfWidth) {
+          carousel.scrollLeft = 0;
+        }
+      }, 16); // 60 FPS
+    };
+
+    // Aplicar inercia después de soltar
+    const applyMomentum = () => {
+      if (momentumInterval) {
+        clearInterval(momentumInterval);
+      }
+
+      momentumInterval = window.setInterval(() => {
+        if (!carousel) return;
+        
+        // Desacelerar la velocidad gradualmente
+        velocity *= 0.95; // Factor de fricción
+        
+        // Si la velocidad es muy baja, detener
+        if (Math.abs(velocity) < 0.5) {
+          clearInterval(momentumInterval);
+          momentumInterval = undefined;
+          // Reanudar autoplay después de la inercia
+          setTimeout(() => {
+            isPaused = false;
+          }, 800);
+          return;
+        }
+        
+        // Aplicar la velocidad al scroll
+        carousel.scrollLeft -= velocity;
+      }, 16);
+    };
+
+    if (carousel) {
+      // Detectar scroll manual en PC (con mouse wheel o trackpad)
+      carousel.addEventListener('wheel', (e) => {
+        isPaused = true;
+        lastUserScroll = Date.now();
+        
+        // Reanudar después de 800ms de inactividad
+        setTimeout(() => {
+          if (Date.now() - lastUserScroll >= 800) {
+            isPaused = false;
+          }
+        }, 800);
+      });
+
+      // === DRAG TO SCROLL CON INERCIA ===
+      // Cuando presiona el mouse
+      carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        isPaused = true;
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeftStart = carousel.scrollLeft;
+        lastX = e.pageX;
+        lastTime = Date.now();
+        velocity = 0;
+        
+        // Detener inercia previa si existe
+        if (momentumInterval) {
+          clearInterval(momentumInterval);
+          momentumInterval = undefined;
+        }
+      });
+
+      // Cuando suelta el mouse
+      carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        lastUserScroll = Date.now();
+        
+        // Aplicar inercia basada en la última velocidad
+        if (Math.abs(velocity) > 1) {
+          applyMomentum();
+        } else {
+          setTimeout(() => {
+            isPaused = false;
+          }, 800);
+        }
+      });
+
+      // Cuando el mouse sale del área
+      carousel.addEventListener('mouseleave', () => {
+        if (isDown) {
+          isDown = false;
+          // Aplicar inercia si estaba arrastrando
+          if (Math.abs(velocity) > 1) {
+            applyMomentum();
+          } else {
+            setTimeout(() => {
+              isPaused = false;
+            }, 800);
+          }
+        }
+      });
+
+      // Cuando mueve el mouse mientras arrastra
+      carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        
+        const x = e.pageX - carousel.offsetLeft;
+        const currentTime = Date.now();
+        const timeDiff = currentTime - lastTime;
+        
+        // Calcular velocidad basada en el movimiento
+        if (timeDiff > 0) {
+          const distance = e.pageX - lastX;
+          velocity = distance / timeDiff * 16; // Normalizar a 60fps
+        }
+        
+        const walk = (x - startX) * 2;
+        carousel.scrollLeft = scrollLeftStart - walk;
+        
+        lastX = e.pageX;
+        lastTime = currentTime;
+        lastUserScroll = Date.now();
+      });
+
+      // Pausar al tocar en móvil
+      carousel.addEventListener('touchstart', () => {
+        isPaused = true;
+        lastUserScroll = Date.now();
+      });
+
+      // Reanudar después de 800ms de soltar en móvil
+      carousel.addEventListener('touchend', () => {
+        setTimeout(() => {
+          if (Date.now() - lastUserScroll >= 800) {
+            isPaused = false;
+          }
+        }, 800);
+      });
+
+      // Iniciar scroll continuo
+      startContinuousScroll();
+    }
+</script>

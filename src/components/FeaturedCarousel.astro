@@ -1,0 +1,161 @@
+---
+import Colaboraciones from "../pages/colaboraciones.astro";
+
+const collaborations = [
+    { title: "G2A", img:"/img/colabs/G2ALogo.svg", desc: "Página de venta de videojuegos" },
+    { title: "Microsoft", img:"/img/colabs/MICROSOFTLogo.svg", desc: "Empresa líder en tecnología" },
+    { title: "Amazon", img:"/img/colabs/AMAZONLogo.svg", desc: "Empresa líder en comercio electrónico" },
+    { title: "NVIDIA", img:"/img/colabs/NVIDIALogo.svg", desc: "Empresa líder en tecnología de gráficos" },
+    //Acá se pueden añadir más si se requiere
+];
+---
+
+<div class="relative w-full max-w-6xl mx-auto group">
+  
+    <!-- Contenedor del Carrusel -->
+    <div 
+        id="carousel-container"
+        class="flex overflow-x-auto scrollbar-hide gap-4 py-4"
+    >
+        {/* Primer set de colaboraciones */}
+        {collaborations.map((colab, index) => (
+            <div class="shrink-0 w-[85%] md:w-[70%] lg:w-[60%] first:pl-6 relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <!-- Imagen -->
+                <img 
+                src={colab.img} 
+                alt={colab.title} 
+                class="w-full h-full object-contain p-12 drop-shadow-xl"
+                />
+        
+            <!-- Overlay con Texto -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-8">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-1">{colab.title}</h3>
+                    <p class="text-gray-300 font-serif text-sm md:text-base opacity-90">{colab.desc}</p>
+                </div>
+            </div>
+        ))}
+        {/* Segundo set de colaboraciones (duplicado para loop infinito) */}
+        {collaborations.map((colab, index) => (
+            <div class="shrink-0 w-[85%] md:w-[70%] lg:w-[60%] last:pr-6 relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <!-- Imagen -->
+                <img 
+                src={colab.img} 
+                alt={colab.title} 
+                class="w-full h-full object-contain p-12 drop-shadow-xl"
+                />
+        
+            <!-- Overlay con Texto -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-8">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-1">{colab.title}</h3>
+                    <p class="text-gray-300 font-serif text-sm md:text-base opacity-90">{colab.desc}</p>
+                </div>
+            </div>
+        ))}
+    </div>
+
+    <!-- Botones de Navegación (aparecen al hacer hover en desktop) -->
+    <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white p-3 rounded-full backdrop-blur-sm transition opacity-0 group-hover:opacity-100 z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+    </button>
+    
+    <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white p-3 rounded-full backdrop-blur-sm transition opacity-0 group-hover:opacity-100 z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+    </button>
+
+    </div>
+
+<style>
+  /* Ocultar barra de scroll pero mantener funcionalidad */
+  .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+  }
+  .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+</style>
+
+<script>
+    const container = document.getElementById('carousel-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    let autoScrollInterval;
+    let isUserInteracting = false;
+
+    // Autoplay continuo y suave
+    const startContinuousScroll = () => {
+      autoScrollInterval = setInterval(() => {
+        if (!container || isUserInteracting) return;
+        
+        // Mover 0.5 pixels a la vez para un movimiento más suave
+        container.scrollLeft += 0.5;
+        
+        // Cuando llegamos a la mitad (final del primer set), resetear al inicio sin que se note
+        const halfWidth = container.scrollWidth / 2;
+        if (container.scrollLeft >= halfWidth) {
+          container.scrollLeft = 0;
+        }
+      }, 16); // 16ms = ~60 frames por segundo para movimiento muy suave
+    };
+
+    // Detener scroll continuo
+    const stopContinuousScroll = () => {
+      clearInterval(autoScrollInterval);
+    };
+
+    // Función para scroll manual con botones
+    const scrollCarousel = (direction = 'next') => {
+      if (!container) return;
+      
+      const scrollAmount = container.offsetWidth * 0.6;
+      
+      if (direction === 'next') {
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      } else {
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      }
+    };
+
+    // Event Listeners
+    if (container) {
+      // Botones manuales
+      nextBtn?.addEventListener('click', () => {
+        isUserInteracting = true;
+        scrollCarousel('next');
+        setTimeout(() => { isUserInteracting = false; }, 1000);
+      });
+      
+      prevBtn?.addEventListener('click', () => {
+        isUserInteracting = true;
+        scrollCarousel('prev');
+        setTimeout(() => { isUserInteracting = false; }, 1000);
+      });
+
+      // Pausar cuando el usuario interactúa
+      container.addEventListener('mouseenter', () => {
+        isUserInteracting = true;
+      });
+      
+      container.addEventListener('mouseleave', () => {
+        isUserInteracting = false;
+      });
+
+      // Pausar si el usuario hace scroll manual
+      container.addEventListener('touchstart', () => {
+        isUserInteracting = true;
+      });
+      
+      container.addEventListener('touchend', () => {
+        setTimeout(() => { isUserInteracting = false; }, 2000);
+      });
+
+      // Iniciar scroll continuo
+      startContinuousScroll();
+    }
+
+</script>

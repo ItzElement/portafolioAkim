@@ -1,19 +1,58 @@
 ---
 // Archivo: src/pages/about.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionBadge from '../components/SectionBadge.astro';
+import GlowBackground from '../components/GlowBackground.astro';
+import FeaturedCarousel from '../components/FeaturedCarousel.astro';
+import BrandMarquee from '../components/BrandMarquee.astro';
 ---
 
 {/* 1. Cambiamos el título para que sea específico de esta página */}
-<BaseLayout title="Sobre Mí - Akim Aguilar">
-    
-    {/* 2. Reemplazamos el contenido con el de la página "Sobre Mí" */}
-    <h1>Hola Mundo,</h1>
-    <p>
-        Estoy en colaboraciones
-    </p>
-    <p>
-        Tambien hago la función de manager o intermediario, con creadores y espero pronto hacer mi propia agencia.
-    </p>
-    {/* Aquí puedes seguir añadiendo más párrafos, imágenes, etc. */}
+<BaseLayout title="Colaboraciones - Akim Aguilar">
+    <main class="py-32 md:py-38">
+        <!-- 1. Título y Carrusel (Parte superior) -->
+         
+        <div class="relative w-full mb-20 reveal-on-scroll">
+            <GlowBackground position="center" />
 
+            <div class="container mx-auto px-6 mb-16 md:mb-20 max-w-5xl">
+                <h1 class="text-center text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                    Marcas destacadas con las que he <span class="text-orange-400">colaborado</span>
+                </h1>
+                <p class="text-center text-lg md:text-xl text-gray-600 dark:text-gray-400 font-serif mx-auto leading-relaxed">
+                    Algunos de los proyectos más destacados y las empresas con las que he tenido el placer de trabajar.
+                </p>
+            </div>
+
+            <!-- El carrusel -->
+            <FeaturedCarousel />
+        </div>
+
+        <!-- 2. Texto Central (Parte media) -->
+        <div class="relative w-full py-24 md:py-32">
+            <GlowBackground position="left" />
+
+            <div class="container mx-auto px-6 max-w-4xl reveal-on-scroll">
+                <SectionBadge text="Colaboraciones" />
+                <div class="text-center prose prose-xl dark:prose-invert mx-auto font-serif text-gray-700 dark:text-gray-300 leading-loose">
+                    <p>
+                        Cada colaboración es una oportunidad para conectar audiencias ---
+                        productos y servicios que realmente aportan valor, siempre manteniendo mi esencia y estilo único.
+                    </p>
+                    <p>
+                        Desde tecnología hasta estilo de vida, mi objetivo siempre es crear contenido que resuene, divierta
+                        y genere impacto positivo.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Pasarela de logos (Parte inferior) -->
+        <div class="relative w-full py-12 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-sm font-bold tracking-widest text-orange-400 uppercase reveal-on-scroll">Respaldados por:</span>
+            </div>
+            <BrandMarquee />
+        </div>
+    </main>
 </BaseLayout>
