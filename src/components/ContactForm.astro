@@ -1,0 +1,142 @@
+---
+const DESTINATION_EMAIL = "contactoakim@gmail.com";
+---
+
+<style>
+  /* Estilos para modo claro */
+  :global(:root) #contact-form label {
+    color: #000000 !important;
+  }
+  
+  :global(:root) #contact-form input,
+  :global(:root) #contact-form textarea,
+  :global(:root) #contact-form select {
+    color: #000000 !important;
+  }
+  
+  :global(:root) #contact-form input::placeholder,
+  :global(:root) #contact-form textarea::placeholder {
+    color: #4a4a4a !important;
+    opacity: 1 !important;
+  }
+  
+  /* Estilos para modo oscuro */
+  :global(html.dark) #contact-form label {
+    color: #d1d5db !important;
+  }
+  
+  :global(html.dark) #contact-form input,
+  :global(html.dark) #contact-form textarea,
+  :global(html.dark) #contact-form select {
+    color: #ffffff !important;
+  }
+  
+  :global(html.dark) #contact-form input::placeholder,
+  :global(html.dark) #contact-form textarea::placeholder {
+    color: #9ca3af !important;
+    opacity: 1 !important;
+  }
+</style>
+
+<div class="w-full bg-white/5 dark:bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl relative overflow-hidden group">
+  
+  <div class="absolute -top-10 -right-10 w-40 h-40 bg-orange-500/20 rounded-full blur-3xl group-hover:bg-orange-500/30 transition-colors duration-500"></div>
+
+  <!-- 
+    Añadimos un ID 'contact-form' para controlarlo con JS.
+    Aquí se coloca la debida información para enviar al correo
+  -->
+  <form id="contact-form" class="relative z-10 space-y-6">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-2">
+        <!-- Campo del nombre -->
+        <label for="name" class="text-sm font-medium text-black dark:text-gray-300">Tu Nombre</label>
+        <input 
+          type="text" 
+          id="name" 
+          required
+          placeholder="Juan Pérez"
+          class="w-full bg-gray-50/50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-black dark:text-white placeholder-gray-700 dark:placeholder-gray-400 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400 transition-all"
+        />
+      </div>
+      <!-- Campo del correo -->
+      <div class="space-y-2">
+        <label for="user_email" class="text-sm font-medium text-black dark:text-gray-300">Tu Correo</label>
+        <input 
+          type="email" 
+          id="user_email" 
+          required
+          placeholder="hola@ejemplo.com"
+          class="w-full bg-gray-50/50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-black dark:text-white placeholder-gray-700 dark:placeholder-gray-400 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400 transition-all"
+        />
+      </div>
+    </div>
+    <!-- Campo del asunto, aquí el usuario puede elegir entre estas opciones -->
+    <div class="space-y-2">
+      <label for="subject" class="text-sm font-medium text-black dark:text-gray-300">Asunto</label>
+      <select id="subject" class="w-full bg-gray-50/50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-black dark:text-white focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400 transition-all appearance-none cursor-pointer [&>option]:text-black [&>option]:dark:text-white [&>option]:bg-white [&>option]:dark:bg-gray-800">
+        <option>Propuesta de Colaboración</option>
+        <option>Manager e intermediario</option>
+        <option>Entrevista / Prensa</option>
+        <option>Otro</option>
+      </select>
+    </div>
+
+    <div class="space-y-2">
+      <label for="message" class="text-sm font-medium text-black dark:text-gray-300">Mensaje</label>
+      <textarea 
+        id="message" 
+        required
+        rows="4" 
+        placeholder="Cuéntame sobre tu proyecto..."
+        class="w-full bg-gray-50/50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-black dark:text-white placeholder-gray-700 dark:placeholder-gray-400 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400 transition-all resize-none"
+      ></textarea>
+    </div>
+
+    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-orange-500/20 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer">
+      <span>Enviar correo</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+      </svg>
+    </button>
+
+  </form>
+</div>
+
+<!-- 
+  Toma los datos y abre Outlook/Gmail
+-->
+<script define:vars={{ DESTINATION_EMAIL }}>
+  const form = document.getElementById('contact-form');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault(); // Evita que la página se recargue
+
+    // 1. Obtener los valores
+    const name = document.getElementById('name').value;
+    const userEmail = document.getElementById('user_email').value;
+    const subjectSelection = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+
+    // 2. Construir el Asunto y el Cuerpo del correo
+    const finalSubject = `${subjectSelection}`;
+    
+    // Aquí damos formato al cuerpo del mensaje
+    const bodyContent = `Hola Akim,
+
+Me llamo ${name} y me gustaría contactarte.
+
+${message}
+
+Saludos,
+${name}`;
+
+    // 3. Crear el enlace mailto
+    // encodeURIComponent asegura que los espacios y saltos de línea funcionen bien
+    const mailtoLink = `mailto:${DESTINATION_EMAIL}?subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(bodyContent)}`;
+
+    // 4. Abrir el cliente de correo
+    window.location.href = mailtoLink;
+  });
+</script>

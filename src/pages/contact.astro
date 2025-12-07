@@ -1,19 +1,87 @@
 ---
 // Archivo: src/pages/about.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import GlowBackground from '../components/GlowBackground.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const email="contactoakim@gmail.com";
 ---
 
 {/* 1. Cambiamos el título para que sea específico de esta página */}
-<BaseLayout title="Sobre Mí - Akim Aguilar">
-    
-    {/* 2. Reemplazamos el contenido con el de la página "Sobre Mí" */}
-    <h1>Hola Mundo,</h1>
-    <p>
-        Estoy en contacto
-    </p>
-    <p>
-        Tambien hago la función de manager o intermediario, con creadores y espero pronto hacer mi propia agencia.
-    </p>
-    {/* Aquí puedes seguir añadiendo más párrafos, imágenes, etc. */}
+<BaseLayout title="Contacto - Akim Aguilar">
+    <main class="relative min-h-screen flex items-center justify-center py-32 px-6 overflow-hidden">
+
+        <!-- Fondo con un glow -->
+        <GlowBackground position="center" />
+
+        <div class="container mx-auto max-w-4xl relative z-10">
+            <div class="flex flex-col items-center gap-12">
+                <!-- Información y Texto -->
+                <div class="space-y-8 w-full">
+                    <div class="w-full flex flex-col items-center gap-8">
+                        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-center">
+                            Hagamos algo <br/>
+                            <span class="text-orange-400">Legendario.</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl text-center">
+                            ¿Tienes una marca, un proyecto o una idea en mente? Me encanta conectar con personas que buscan romperla en Internet. Cuéntame qué tienes en mente.
+                        </p>
+                    </div>
+
+                    <!-- Tarjeta de Correo con Botón de Copiar -->
+                    <div class="bg-white/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl p-6 backdrop-blur-sm max-w-md mx-auto">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-widest font-bold">Correo Electrónico</p>
+                        <div class="flex items-center gap-4 justify-between bg-white dark:bg-black-30 rounded-lg p-3 border border-gray-200 dark:border-white/10">
+                            <span class="font-mono text-gray-800 dark:text-gray-800 truncate">{email}</span>
+
+                            <button
+                                id="copy-btn"
+                                class="p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-md transition-colors text-gray-500 hover:text-orange-400
+                                relative group"
+                                aria-label="Copiar correo"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+                                </svg>
+
+                                <!-- Tooltip "Copiado" -->
+                                <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded opacity-0
+                                group-hover:opacity-0 transition-opacity duration-300" id="tooltip">¡Copiado!</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Columna derecha: Formulario -->
+                    <div class="w-full mt-8">
+                        <ContactForm />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
 </BaseLayout>
+
+<script>
+    // Lógica para copiar el correo al portapapeles
+    const copyBtn = document.getElementById('copy-btn');
+    const tooltip = document.getElementById('tooltip');
+
+    if (copyBtn && tooltip) {
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText('email');
+                // Mostrar el tooltip
+                tooltip.classList.add('opacity-0', 'group-hover:opacity-0');
+                tooltip.classList.add('opacity-100');
+
+                // Ocultar el tooltip después de 2 segundos
+                setTimeout(() => {
+                    tooltip.classList.remove('opacity-100');
+                    tooltip.classList.add('opacity-0', 'group-hover:opacity-0');
+                }, 2000);
+            } catch (err) {
+                console.error('Error al copiar al portapapeles: ', err);
+            }
+        });
+    }
+</script>
