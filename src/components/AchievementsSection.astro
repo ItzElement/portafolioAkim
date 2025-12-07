@@ -5,9 +5,12 @@ const achievements = [
   { value: 12, prefix: "", suffix: "", title: "Años de Experiencia", description: "Creando contenido en línea" },
   { value: 50, prefix: "", suffix: "+", title: "Colaboraciones", description: "Con marcas líderes en el mercado" },
 ];
+
+import GlowBackground from './GlowBackground.astro';
 ---
 
 <section class="py-24 md:py-32">
+    <GlowBackground position="center" />
     <div class="container mx-auto px-6 max-w-5xl">
         <!-- Título de la sección -->
         <h2 class="text-center text-4xl md:text-5xl font-bold">
