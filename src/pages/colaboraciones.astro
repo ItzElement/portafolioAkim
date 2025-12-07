@@ -9,13 +9,13 @@ import BrandMarquee from '../components/BrandMarquee.astro';
 
 {/* 1. Cambiamos el título para que sea específico de esta página */}
 <BaseLayout title="Colaboraciones - Akim Aguilar">
-    <main class="py-32 md:py-38">
+    <main class="pt-32 md:pt-40 pb-20 md:pb-24">
         <!-- 1. Título y Carrusel (Parte superior) -->
          
-        <div class="relative w-full mb-20 reveal-on-scroll">
+        <div class="relative w-full mb-20 md:mb-24 reveal-on-scroll">
             <GlowBackground position="center" />
 
-            <div class="container mx-auto px-6 mb-16 md:mb-20 max-w-5xl">
+            <div class="container mx-auto px-6 mb-20 md:mb-24 max-w-5xl">
                 <h1 class="text-center text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
                     Marcas destacadas con las que he <span class="text-orange-400">colaborado</span>
                 </h1>
@@ -29,26 +29,24 @@ import BrandMarquee from '../components/BrandMarquee.astro';
         </div>
 
         <!-- 2. Texto Central (Parte media) -->
-        <div class="relative w-full py-24 md:py-32">
+        <div class="relative w-full py-16 md:py-20">
             <GlowBackground position="left" />
 
-            <div class="container mx-auto px-6 max-w-4xl reveal-on-scroll">
+            <div class="container mx-auto px-6 max-w-5xl reveal-on-scroll">
                 <SectionBadge text="Colaboraciones" />
-                <div class="text-center prose prose-xl dark:prose-invert mx-auto font-serif text-gray-700 dark:text-gray-300 leading-loose">
-                    <p>
-                        Cada colaboración es una oportunidad para conectar audiencias ---
-                        productos y servicios que realmente aportan valor, siempre manteniendo mi esencia y estilo único.
+                <div class="text-center mx-auto mt-8">
+                    <p class="text-lg md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6 font-serif">
+                        Cada colaboración es una oportunidad para conectar audiencias con productos y servicios que realmente aportan valor, siempre manteniendo mi esencia y estilo único.
                     </p>
-                    <p>
-                        Desde tecnología hasta estilo de vida, mi objetivo siempre es crear contenido que resuene, divierta
-                        y genere impacto positivo.
+                    <p class="text-lg md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed font-serif">
+                        Desde tecnología hasta estilo de vida, mi objetivo siempre es crear contenido que resuene, divierta y genere impacto positivo.
                     </p>
                 </div>
             </div>
         </div>
 
         <!-- 3. Pasarela de logos (Parte inferior) -->
-        <div class="relative w-full py-12 reveal-on-scroll">
+        <div class="relative w-full pt-32 md:pt-32 reveal-on-scroll">
             <div class="text-center mb-8">
                 <span class="text-sm font-bold tracking-widest text-orange-400 uppercase reveal-on-scroll">Respaldados por:</span>
             </div>
